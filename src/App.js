@@ -26,24 +26,54 @@ function App() {
     setRepositories([ ...repositories, repository]);
   }
 
-  async function handleRemoveRepository(id) {
-    api.delete(`repositories/${id}`);
+  async function handleLikeRepository(id) {
+    const likedRepo = await api.post(`repositories/${id}/like`);
 
-    const newRepositoryList = repositories.filter(repository => repository.id != id);
+    const newRepositoryList = repositories.map(r => r.id === id ? likedRepo.data : r);
+
     setRepositories(newRepositoryList);
   }
 
+  function handleRemoveRepository(id) {
+    api.delete(`repositories/${id}`).then(() => {
+      const newRepositoryList = repositories.filter(repository => repository.id !== id);
+      setRepositories(newRepositoryList);
+    });
+
+  }
+
   return (
-    <div>
-      <button onClick={handleAddRepository}>Add</button>
-      <ul data-testid="repository-list">
+    <div className="App">
+      <nav className="AddRepoNav">
+
+        <button className="AddRepoButton" onClick={handleAddRepository}>Add</button>
+      </nav>
+      <ul className="RepoList" data-testid="repository-list">
         {
           repositories.map(repository => {
-            const { id, title } = repository;
+            const { id, title, techs, likes } = repository;
+            const techCount = techs.length;
             return (
               <li key={id}>
-                <span>{title}</span>
-                <button onClick={() => handleRemoveRepository(id)}>Remove</button>    
+                <span>
+                  <h3 className="RepoTitle">{title}</h3>
+                  <h4>
+                    {
+                      techs.map((tech, i) => {
+                        const text = techCount === i + 1
+                          ? `${tech}`
+                          : `${tech}, `
+                        return <span key={text}>{text}</span>
+                      })
+                    }
+                  </h4>
+                </span>
+                <span className="Actions">
+                  <button onClick={() => handleLikeRepository(id)}>
+                    {likes === 1 ? `${likes} Like` : `${likes} Likes`}
+                  </button>
+                  <button onClick={() => handleRemoveRepository(id)}>Remove</button>    
+                </span>
               </li>
             )
           })
