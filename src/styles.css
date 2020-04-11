@@ -6,34 +6,76 @@
 
 body {
   font-size: 14px;
+  color: #24292e;
 }
 
-div {
-  width: 100%;
-  margin: 20px;
+.App {
+  width: 50vw;
+  padding: 24px;
+  margin: 0 auto;
 }
 
-div li {
+.AddRepoNav {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #cccccc;
 }
 
-div li + li {
-  margin-top: 15px;
+.RepoList {
+  list-style: none;
+}
+
+.RepoList li {
+  padding:18px 0;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.RepoTitle {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 button {
-  background: #7159c1;
-  color: #fff;
-  border: 0;
-  padding: 10px 15px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-weight: bold;
+  
+  background-color: #f2f7fc;
+  background-image: linear-gradient(-240deg,#f4f9fd,#edf3f8 45%);
+  color: rgba(62,62,62,.8);
+
+  padding: 6px 12px;
   font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+  
+  background-repeat: repeat-x;
+  background-position: -1px -1px;
+  background-size: 110% 110%;
+  border: 1px solid rgba(62,62,62,.2);
+  border-radius: .15em;
+
 }
 
-div li button {
-  margin: 0 15px;
-  background: #ca4949;
+.AddRepoButton {
+  width: 80px;
+  color: #fff;
+
+
+  background-color: #c3f7d2;
+  background-image: linear-gradient(-240deg,#ccfad1,#caf1d2 90%);
+  color: rgba(62,62,62,.8);
 }
+
+.Actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Actions button {
+  width: 80px;
+  margin-left: 8px;
+}
+
