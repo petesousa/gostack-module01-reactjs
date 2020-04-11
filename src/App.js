@@ -15,9 +15,10 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
+    const title = getRandomRepositoryName();
     const response = await api.post('repositories', {
-      title: getRandomRepositoryName(),
-      url: "https://github.com/petesousa/gostack-module01-nodejs",
+      title,
+      url: `https://github.com/petesousa/${title}`,
       techs: ["javascript", "nodejs"]
     });
     
