@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={handleAddRepository}>Add</button>
+      <button onClick={handleAddRepository}>Adicionar</button>
       <ul data-testid="repository-list">
         {
           repositories.map(repository => {
@@ -43,7 +43,7 @@ function App() {
             return (
               <li key={id}>
                 <span>{title}</span>
-                <button onClick={() => handleRemoveRepository(id)}>Remove</button>    
+                <button onClick={() => handleRemoveRepository(id)}>Remover</button>    
               </li>
             )
           })
